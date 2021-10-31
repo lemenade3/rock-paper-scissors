@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+
+        // Create a function called computerPlay
+
+        function computerPlay() {
+
+            // Generate a random num between 1 and 3
+
+            let num = Math.floor((Math.random() * 3) + 1);
+
+            // Assign a num to 'rock' 'paper' or 'scissors' and return the string
+
+            switch(num) {
+                case 1:
+                  return("Rock");
+                  break;
+                case 2: 
+                  return("Paper");
+                  break;
+                case 3:
+                  return("Scissors");
+                  break;
+                default:
+                  return("Something has gone horribly wrong")
+            }
+
+        }
+
+        console.log(computerPlay());
+
+        // Create a function to play a round with two parameters computerSelection and playerSelection.
+
+        const computerSelection = computerPlay();
+        let playerSelection;
+
+        function playRound(computerSelection, playerSelection) {
+            
+            // Ask for player input or rock, paper or scissors
+
+            playerSelection = prompt("Please input either 'Rock', 'Paper' or 'Scissors'");
+
+            // Convert playerSelection to lower case to insure string is in correct format.
+            // Use a switch statement with if else statements to evaluate winning condition and output result to console.
+
+        }
+
+
+        
+    </script>
+</body>
+</html>
