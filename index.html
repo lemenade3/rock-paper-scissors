@@ -37,10 +37,14 @@
 
         // Create a function to play a round with two parameters computerSelection and playerSelection.
 
-        const computerSelection = computerPlay();
+        let computerSelection;
         let playerSelection;
 
         function playRound(computerSelection, playerSelection) {
+
+            // Store computer choice
+
+            computerSelection = computerPlay();
             
             // Ask for player input or rock, paper or scissors
 
@@ -84,7 +88,7 @@
 
       // Create a global variable called score
 
-      let score;
+      let score = 0;
 
       // Create a global variable called round
 
@@ -98,15 +102,25 @@
         // At the end of each loop edit the score counter
 
         for (round = 0; round < 5; round++) {
-          console.log(playRound(computerSelection, playerSelection));
+
+          let result = playRound(computerSelection, playerSelection);
+
+          console.log(result);
+
+          if (result == `${playerSelection} beats ${computerSelection}! You Win!`) {
+            score++;
+          } else if (result == `${computerSelection} beats ${playerSelection}! You Lose!`) {
+            score--;
+          } else if (result == `${playerSelection} and ${computerSelection}! It's a draw!`) {
+            score;
+          }
+          console.log(score);
         }
         // Evaluate whether player has won and print result
       }
 
       console.log(game());
-
-
-        
+      
     </script>
 </body>
 </html>
