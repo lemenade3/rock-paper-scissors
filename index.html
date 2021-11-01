@@ -82,7 +82,28 @@
             }
         }
 
-      console.log(playRound(computerSelection, playerSelection));
+      // Create a global variable called score
+
+      let score;
+
+      // Create a global variable called round
+
+      let round;
+
+      // Create a function to run through 5 rounds and output a win condition at the end called game()
+
+      function game() {
+        
+        // Run a for loop for 5 rounds, after each round increase the round counter by 1
+        // At the end of each loop edit the score counter
+
+        for (round = 0; round < 5; round++) {
+          console.log(playRound(computerSelection, playerSelection));
+        }
+        // Evaluate whether player has won and print result
+      }
+
+      console.log(game());
 
 
         
