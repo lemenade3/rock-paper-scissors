@@ -61,24 +61,30 @@
                 if (computerSelection == "rock") {
                   return `${playerSelection} and ${computerSelection}! It's a draw!`
                 } else if (computerSelection == "paper") {
+                  score = --score;
                   return `${computerSelection} beats ${playerSelection}! You Lose!`
                 } else if (computerSelection == "scissors") {
+                  score = ++score;
                   return `${playerSelection} beats ${computerSelection}! You Win!`
                 } break;
 
               case "paper":
                 if (computerSelection == "rock") {
+                  score = ++score;
                   return `${playerSelection} beats ${computerSelection}! You Win!`
                 } else if (computerSelection == "paper") {
                   return `${playerSelection} and ${computerSelection}! It's a draw!`
                 } else if (computerSelection == "scissors") {
+                  score = --score;
                   return `${computerSelection} beats ${playerSelection}! You Lose!`
                 } break;
 
               case "scissors":
                 if (computerSelection == "rock") {
+                  score = --score;
                   return `${computerSelection} beats ${playerSelection}! You Lose!`
                 } else if (computerSelection == "paper") {
+                  score = ++score;
                   return `${playerSelection} beats ${computerSelection}! You Win!`
                 } else if (computerSelection == "scissors") {
                   return `${playerSelection} and ${computerSelection}! It's a draw!`
@@ -102,21 +108,18 @@
         // At the end of each loop edit the score counter
 
         for (round = 0; round < 5; round++) {
-
-          let result = playRound(computerSelection, playerSelection);
-
-          console.log(result);
-
-          if (result == `${playerSelection} beats ${computerSelection}! You Win!`) {
-            score++;
-          } else if (result == `${computerSelection} beats ${playerSelection}! You Lose!`) {
-            score--;
-          } else if (result == `${playerSelection} and ${computerSelection}! It's a draw!`) {
-            score;
-          }
+          console.log(playRound(computerSelection, playerSelection));
           console.log(score);
         }
         // Evaluate whether player has won and print result
+
+        if (score > 0) {
+          return "You beat the computer! Well done!";
+        } else if (score < 0) {
+          return "The computer beat you! You Lose!";
+        } else if (score == 0) {
+          return "You drew with the computer! Want to play again?";
+        }
       }
 
       console.log(game());
