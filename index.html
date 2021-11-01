@@ -21,21 +21,19 @@
 
             switch(num) {
                 case 1:
-                  return("Rock");
+                  return "rock";
                   break;
                 case 2: 
-                  return("Paper");
+                  return "paper";
                   break;
                 case 3:
-                  return("Scissors");
+                  return "scissors";
                   break;
                 default:
-                  return("Something has gone horribly wrong")
+                  return "Something has gone horribly wrong";
             }
 
         }
-
-        console.log(computerPlay());
 
         // Create a function to play a round with two parameters computerSelection and playerSelection.
 
@@ -49,9 +47,42 @@
             playerSelection = prompt("Please input either 'Rock', 'Paper' or 'Scissors'");
 
             // Convert playerSelection to lower case to insure string is in correct format.
+
+            playerSelection = playerSelection.toLowerCase();
+
             // Use a switch statement with if else statements to evaluate winning condition and output result to console.
 
+            switch(playerSelection) {
+              case "rock":
+                if (computerSelection == "rock") {
+                  return `${playerSelection} and ${computerSelection}! It's a draw!`
+                } else if (computerSelection == "paper") {
+                  return `${computerSelection} beats ${playerSelection}! You Lose!`
+                } else if (computerSelection == "scissors") {
+                  return `${playerSelection} beats ${computerSelection}! You Win!`
+                } break;
+
+              case "paper":
+                if (computerSelection == "rock") {
+                  return `${playerSelection} beats ${computerSelection}! You Win!`
+                } else if (computerSelection == "paper") {
+                  return `${playerSelection} and ${computerSelection}! It's a draw!`
+                } else if (computerSelection == "scissors") {
+                  return `${computerSelection} beats ${playerSelection}! You Lose!`
+                } break;
+
+              case "scissors":
+                if (computerSelection == "rock") {
+                  return `${computerSelection} beats ${playerSelection}! You Lose!`
+                } else if (computerSelection == "paper") {
+                  return `${playerSelection} beats ${computerSelection}! You Win!`
+                } else if (computerSelection == "scissors") {
+                  return `${playerSelection} and ${computerSelection}! It's a draw!`
+                } break;
+            }
         }
+
+      console.log(playRound(computerSelection, playerSelection));
 
 
         
