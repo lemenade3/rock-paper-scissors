@@ -10,13 +10,13 @@ function computerPlay() {
 
     switch(num) {
         case 1:
-          return "rock";
+          return "Rock";
           break;
         case 2: 
-          return "paper";
+          return "Paper";
           break;
         case 3:
-          return "scissors";
+          return "Scissors";
           break;
         default:
           return "Something has gone horribly wrong";
@@ -41,41 +41,44 @@ function playRound(computerSelection, playerSelection) {
 
     // Convert playerSelection to lower case to insure string is in correct format.
 
-    playerSelection = playerSelection.toLowerCase();
+    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
 
     // Use a switch statement with if else statements to evaluate winning condition and output result to console.
 
     switch(playerSelection) {
-      case "rock":
-        if (computerSelection == "rock") {
+      case "Rock":
+        if (computerSelection == "Rock") {
           return `${playerSelection} and ${computerSelection}! It's a draw!`
-        } else if (computerSelection == "paper") {
+        } else if (computerSelection == "Paper") {
           score = --score;
           return `${computerSelection} beats ${playerSelection}! You Lose!`
-        } else if (computerSelection == "scissors") {
+        } else if (computerSelection == "Scissors") {
           score = ++score;
+          outOf = ++outOf;
           return `${playerSelection} beats ${computerSelection}! You Win!`
         } break;
 
-      case "paper":
-        if (computerSelection == "rock") {
+      case "Paper":
+        if (computerSelection == "Rock") {
           score = ++score;
+          outOf = ++outOf;
           return `${playerSelection} beats ${computerSelection}! You Win!`
-        } else if (computerSelection == "paper") {
+        } else if (computerSelection == "Paper") {
           return `${playerSelection} and ${computerSelection}! It's a draw!`
-        } else if (computerSelection == "scissors") {
+        } else if (computerSelection == "Scissors") {
           score = --score;
           return `${computerSelection} beats ${playerSelection}! You Lose!`
         } break;
 
-      case "scissors":
-        if (computerSelection == "rock") {
+      case "Scissors":
+        if (computerSelection == "Rock") {
           score = --score;
           return `${computerSelection} beats ${playerSelection}! You Lose!`
-        } else if (computerSelection == "paper") {
+        } else if (computerSelection == "Paper") {
           score = ++score;
+          outOf = ++outOf;
           return `${playerSelection} beats ${computerSelection}! You Win!`
-        } else if (computerSelection == "scissors") {
+        } else if (computerSelection == "Scissors") {
           return `${playerSelection} and ${computerSelection}! It's a draw!`
         } break;
     }
@@ -89,6 +92,10 @@ let score = 0;
 
 let round;
 
+// Create a global variable called outOf to show how many rounds were won out of 5
+
+let outOf = 0;
+
 // Create a function to run through 5 rounds and output a win condition at the end called game()
 
 function game() {
@@ -96,18 +103,18 @@ function game() {
 // Run a for loop for 5 rounds, after each round increase the round counter by 1
 // At the end of each loop edit the score counter
 
-for (round = 0; round < 5; round++) {
+for (round = 1; round < 6; round++) {
+  console.log(`Round ${round}`);
   console.log(playRound(computerSelection, playerSelection));
-  console.log(score);
 }
 // Evaluate whether player has won and print result
 
 if (score > 0) {
-  return "You beat the computer! Well done!";
+  return `You scored ${outOf} out of 5 rounds and beat the computer! Well done!`;
 } else if (score < 0) {
-  return "The computer beat you! You Lose!";
+  return `You scored ${outOf} out of 5 rounds and the computer beat you! You Lose!`;
 } else if (score == 0) {
-  return "You drew with the computer! Want to play again?";
+  return `You scored ${outOf} out of 5 rounds and drew with the computer! Want to play again?`;
 }
 }
 
