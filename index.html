@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+      let score = 0;
+      let round = 0;
+      function game() {
+        function computerPlay() {
+            let num = Math.floor(Math.random() * 3) + 1; 
+            switch (num) {
+                case 1:
+                    return "rock";
+                    break;
+                    
+                case 2:
+                    return "paper";
+                    break;
+                    
+                case 3:
+                    return "scissors";
+                    break;
+                    
+                default:
+                    return "Something went wrong"
+            }
+        }
+        const computerSelection = computerPlay();
+        let playerSelection;
+        function playRound(computerSelection, playerSelection) {
+            playerSelection = prompt("Please pick either 'Rock', 'Paper', or 'Scissors'");
+            playerSelection = playerSelection.toLowerCase();
+            switch (playerSelection) {
+                
+                case 'rock':
+                    if (computerSelection === "rock") {
+                        return `${playerSelection} and ${computerSelection}, It's a draw!`
+                    } else if (computerSelection === "paper") {
+                        return `${computerSelection} beats ${playerSelection}! You Lose!`
+                    } else if (computerSelection === "scissors") {
+                        return `${playerSelection} beats ${computerSelection}! You Win!`
+                    } break;
+                    
+                case 'paper':
+                    if (computerSelection === "rock") {
+                        return `${playerSelection} beats ${computerSelection}! You Win!`
+                    } else if (computerSelection === "paper") {
+                        return `${playerSelection} and ${computerSelection}, It's a draw!`
+                    } else if (computerSelection === "scissors") {
+                        return `${computerSelection} beats ${playerSelection}! You Lose!`
+                    } break;
+                    
+                case 'scissors':
+                    if (computerSelection === "rock") {
+                        return `${computerSelection} beats ${playerSelection}! You Lose!`
+                    } else if (computerSelection === "paper") {
+                        return `${playerSelection} beats ${computerSelection}! You Win!`
+                    } else if (computerSelection === "scissors") {
+                        return `${playerSelection} and ${computerSelection}, It's a draw!`
+                    } break;
+                    
+                default:
+                    return "Something went horribly wrong";
+                }
+            }
+            const outcome = playRound(computerSelection, playerSelection);
+
+
+        for (round = 0; round < 5; round++) {
+
+            playRound(computerSelection, playerSelection);
+
+            if (outcome == `${playerSelection} beats ${computerSelection}! You Win!`) {
+                score = score++;
+            } else if (outcome == `${computerSelection} beats ${playerSelection}! You Lose!`) {
+                score = score--;
+            } else if (outcome == `${playerSelection} and ${computerSelection}, It's a draw!`) {
+                score = score;
+            }
+        }
+        console.log(score);
+      }
+     
+     game();
+     
+     
+     
+     
+     
+     
+     
+     
+     
+      /* // Create a function called game to run through 5 rounds and keep score
+
+      function game() {
+        
+        // Create a variable to initialise a count called score. Each time the player wins, increase by 1. Each time player loses, decrease by 1
+        
+        let score = 0;
+
+        // Create a loop to initialise a count called round to call playRound and increase by one after each time called
+
+        for (let round = 0; round < 5; round++) {
+
+            console.log(round);
+            
+            // Call playRound
+
+            // Alert results of the game
+
+            // Look at outcome of round, adjust score accordingly (use If statements here)
+
+            if (playRound(computerSelection, playerSelection) == `${playerSelection} beats ${computerSelection}! You Win!`) {
+                score = score++
+            } else if (playRound(computerSelection, playerSelection) == `${computerSelection} beats ${playerSelection}! You Lose!`) {
+                score = score--
+            } else if (playRound(computerSelection, playerSelection) == `${playerSelection} and ${computerSelection}, It's a draw!`) {
+                score = score
+            }
+            console.log(score);
+        }
+
+        // If score >= 1 player wins
+        // If score = 0: Draw
+        // If score < 0 player loses
+
+        if (score >= 1) {
+            console.log('You Won The Game!')
+        } else if (score < 0) {
+            console.log('Sorry! You Lost! Want to play again?')
+        } else {
+            console.log("It's a Draw! Want to play again?")
+        }
+      }
+
+      game() */
+      
+      
+
+  </script>  
+</body>
+</html>
