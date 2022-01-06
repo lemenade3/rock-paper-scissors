@@ -1,4 +1,9 @@
 
+const body = document.querySelector('body');
+const rock = document.querySelector('#Rock');
+const paper = document.querySelector('#Paper');
+const scissors = document.querySelector('#Scissors');
+
 function computerPlay() {
     let num = Math.floor((Math.random() * 3) + 1);
     switch(num) {
@@ -14,67 +19,66 @@ function computerPlay() {
         default:
           return "Something has gone horribly wrong";
     }
-
 }
+
+let playerPlay;
 let computerSelection;
 let playerSelection;
 function playRound(computerSelection, playerSelection) {
     computerSelection = computerPlay();
-    playerSelection = prompt("Please input either 'Rock', 'Paper' or 'Scissors'");
-    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+    playerSelection = playerPlay;
     switch(playerSelection) {
       case "Rock":
         if (computerSelection == "Rock") {
-          return `${playerSelection} and ${computerSelection}! It's a draw!`
+          console.log(`${playerSelection} and ${computerSelection}! It's a draw!`)
         } else if (computerSelection == "Paper") {
           score = --score;
-          return `${computerSelection} beats ${playerSelection}! You Lose!`
+          console.log(`${computerSelection} beats ${playerSelection}! You Lose!`)
         } else if (computerSelection == "Scissors") {
           score = ++score;
           outOf = ++outOf;
-          return `${playerSelection} beats ${computerSelection}! You Win!`
+          console.log(`${playerSelection} beats ${computerSelection}! You Win!`)
         } break;
 
       case "Paper":
         if (computerSelection == "Rock") {
           score = ++score;
           outOf = ++outOf;
-          return `${playerSelection} beats ${computerSelection}! You Win!`
+          console.log(`${playerSelection} beats ${computerSelection}! You Win!`)
         } else if (computerSelection == "Paper") {
-          return `${playerSelection} and ${computerSelection}! It's a draw!`
+          console.log(`${playerSelection} and ${computerSelection}! It's a draw!`)
         } else if (computerSelection == "Scissors") {
           score = --score;
-          return `${computerSelection} beats ${playerSelection}! You Lose!`
+          console.log(`${computerSelection} beats ${playerSelection}! You Lose!`)
         } break;
 
       case "Scissors":
         if (computerSelection == "Rock") {
           score = --score;
-          return `${computerSelection} beats ${playerSelection}! You Lose!`
+          console.log(`${computerSelection} beats ${playerSelection}! You Lose!`)
         } else if (computerSelection == "Paper") {
           score = ++score;
           outOf = ++outOf;
-          return `${playerSelection} beats ${computerSelection}! You Win!`
+          console.log(`${playerSelection} beats ${computerSelection}! You Win!`)
         } else if (computerSelection == "Scissors") {
-          return `${playerSelection} and ${computerSelection}! It's a draw!`
+          console.log(`${playerSelection} and ${computerSelection}! It's a draw!`)
         } break;
     }
 }
+
+
 let score = 0;
 let round;
 let outOf = 0;
-function game() {
-for (round = 1; round < 6; round++) {
-  console.log(`Round ${round}`);
-  console.log(playRound(computerSelection, playerSelection));
-}
-if (score > 0) {
-  return `You scored ${outOf} out of 5 rounds and beat the computer! Well done!`;
-} else if (score < 0) {
-  return `You scored ${outOf} out of 5 rounds and the computer beat you! You Lose!`;
-} else if (score == 0) {
-  return `You scored ${outOf} out of 5 rounds and drew with the computer! Want to play again?`;
-}
-}
 
-console.log(game());
+rock.addEventListener('click', computerPlay);
+rock.addEventListener('click', function () {playerPlay = "Rock"});
+rock.addEventListener('click', playRound);
+
+paper.addEventListener('click', computerPlay);
+paper.addEventListener('click', function () {playerPlay = "Paper"});
+paper.addEventListener('click', playRound);
+
+scissors.addEventListener('click', computerPlay);
+scissors.addEventListener('click', function () {playerPlay = "Scissors"});
+scissors.addEventListener('click', playRound);
