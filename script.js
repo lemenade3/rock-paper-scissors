@@ -1,8 +1,14 @@
+// Query selectors for HTML elements
 
-const body = document.querySelector('body');
 const rock = document.querySelector('#Rock');
 const paper = document.querySelector('#Paper');
 const scissors = document.querySelector('#Scissors');
+const result = document.querySelector("#result");
+const compCount = document.querySelector('#compCount');
+const playCount = document.querySelector('#playCount');
+const winner = document.querySelector('#winner')
+
+// functions for game
 
 function computerPlay() {
     let num = Math.floor((Math.random() * 3) + 1);
@@ -24,61 +30,87 @@ function computerPlay() {
 let playerPlay;
 let computerSelection;
 let playerSelection;
+let playScore = 0;
+let compScore = 0;
+
 function playRound(computerSelection, playerSelection) {
     computerSelection = computerPlay();
     playerSelection = playerPlay;
     switch(playerSelection) {
       case "Rock":
         if (computerSelection == "Rock") {
-          console.log(`${playerSelection} and ${computerSelection}! It's a draw!`)
+          result.textContent = `${playerSelection} and ${computerSelection}! It's a draw!`
         } else if (computerSelection == "Paper") {
-          score = --score;
-          console.log(`${computerSelection} beats ${playerSelection}! You Lose!`)
+          compScore += 1;
+          result.textContent = `${computerSelection} beats ${playerSelection}! You Lose!`
         } else if (computerSelection == "Scissors") {
-          score = ++score;
-          outOf = ++outOf;
-          console.log(`${playerSelection} beats ${computerSelection}! You Win!`)
+          playScore += 1;
+          result.textContent = `${playerSelection} beats ${computerSelection}! You Win!`
         } break;
 
       case "Paper":
         if (computerSelection == "Rock") {
-          score = ++score;
-          outOf = ++outOf;
-          console.log(`${playerSelection} beats ${computerSelection}! You Win!`)
+          playScore += 1;
+          result.textContent = `${playerSelection} beats ${computerSelection}! You Win!`
         } else if (computerSelection == "Paper") {
-          console.log(`${playerSelection} and ${computerSelection}! It's a draw!`)
+          result.textContent = `${playerSelection} and ${computerSelection}! It's a draw!`
         } else if (computerSelection == "Scissors") {
-          score = --score;
-          console.log(`${computerSelection} beats ${playerSelection}! You Lose!`)
+          compScore += 1;
+          result.textContent = `${computerSelection} beats ${playerSelection}! You Lose!`
         } break;
 
       case "Scissors":
         if (computerSelection == "Rock") {
-          score = --score;
-          console.log(`${computerSelection} beats ${playerSelection}! You Lose!`)
+          compScore += 1;
+          result.textContent = `${computerSelection} beats ${playerSelection}! You Lose!`
         } else if (computerSelection == "Paper") {
-          score = ++score;
-          outOf = ++outOf;
-          console.log(`${playerSelection} beats ${computerSelection}! You Win!`)
+          playScore += 1;
+          result.textContent = `${playerSelection} beats ${computerSelection}! You Win!`
         } else if (computerSelection == "Scissors") {
-          console.log(`${playerSelection} and ${computerSelection}! It's a draw!`)
+          result.textContent = `${playerSelection} and ${computerSelection}! It's a draw!`
         } break;
     }
 }
 
+function checkWinner() {
+  if (compScore == 5) {
+    winner.textContent = "Oh no! You've been beaten by a computer! Shameful!";
+    rock.remove();
+    paper.remove();
+    scissors.remove();
+  } else if (playScore == 5) {
+    winner.textContent = "You've beaten a computer, I bet you think you're so big and clever don't you?";
+    rock.remove();
+    paper.remove();
+    scissors.remove();
+  };
+};
 
-let score = 0;
-let round;
-let outOf = 0;
+// Event listeners for buttons
 
-rock.addEventListener('click', computerPlay);
-rock.addEventListener('click', function () {playerPlay = "Rock"});
-rock.addEventListener('click', playRound);
+rock.addEventListener('click', function () {
+  computerPlay();
+  playerPlay = "Rock";
+  playRound();
+  compCount.textContent = compScore;
+  playCount.textContent = playScore;
+  checkWinner();
+});
 
-paper.addEventListener('click', computerPlay);
-paper.addEventListener('click', function () {playerPlay = "Paper"});
-paper.addEventListener('click', playRound);
+paper.addEventListener('click', function () {
+  computerPlay();
+  playerPlay = "Paper";
+  playRound();
+  compCount.textContent = compScore;
+  playCount.textContent = playScore;
+  checkWinner();
+});
 
-scissors.addEventListener('click', computerPlay);
-scissors.addEventListener('click', function () {playerPlay = "Scissors"});
-scissors.addEventListener('click', playRound);
+scissors.addEventListener('click', function () {
+  computerPlay();
+  playerPlay = "Scissors";
+  playRound();
+  compCount.textContent = compScore;
+  playCount.textContent = playScore;
+  checkWinner();
+});
